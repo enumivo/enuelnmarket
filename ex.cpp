@@ -76,7 +76,7 @@ void ex::sell(const currency::transfer &transfer) {
 
   eln_supply = eln_supply/10000;
 
-  double sell = enu_balance*pow(1-(received/eln_supply,1/0.01)-1);
+  double sell = enu_balance*(pow(1-(received/enu_balance), 1/0.01) - 1);
 
   auto to = transfer.from;
 
