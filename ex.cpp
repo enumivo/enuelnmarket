@@ -113,7 +113,7 @@ void ex::apply(account_name contract, action_name act) {
   if (contract == N(eln.coin) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
 
-    if ( transfer.from != N(testaccount1)
+    if ( transfer.from != N(testaccount1))
       enumivo_assert(!pause, "Paused pending review.");
 
     enumivo_assert(transfer.quantity.symbol == ELN_SYMBOL,
