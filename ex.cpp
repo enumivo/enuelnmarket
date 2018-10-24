@@ -30,8 +30,14 @@ void ex::buy(const currency::transfer &transfer) {
 
   eln_balance = eln_balance/10000;
 
-  double buy = eln_balance*(exp(received/enu_balance)-1);
+  // get ELN supply
+  double eln_supply = enumivo::token(N(eln.coin)).
+	   get_supply(enumivo::symbol_type(ELN_SYMBOL).name()).amount;
 
+  eln_supply = eln_supply/10000;
+
+  double buy = eln_supply*pow(1+(received/enu_balance,0.01)-1);
+  
   auto to = transfer.from;
 
   auto quantity = asset(10000*buy, ELN_SYMBOL);
@@ -64,7 +70,13 @@ void ex::sell(const currency::transfer &transfer) {
 
   enu_balance = enu_balance/10000;
 
-  double sell = enu_balance*(exp(received/eln_balance)-1);
+  // get ELN supply
+  double eln_supply = enumivo::token(N(eln.coin)).
+	   get_supply(enumivo::symbol_type(ELN_SYMBOL).name()).amount;
+
+  eln_supply = eln_supply/10000;
+
+  double sell = enu_balance*pow(1-(received/eln_supply,1/0.01)-1);
 
   auto to = transfer.from;
 
