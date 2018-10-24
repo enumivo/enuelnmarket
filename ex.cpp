@@ -89,9 +89,21 @@ void ex::sell(const currency::transfer &transfer) {
 }
 
 void ex::apply(account_name contract, action_name act) {
-  enumivo_assert(false, "Paused pending review.");
+
+  bool pause = true;
+
+  if (act == N(transfer) && pause) {
+    auto transfer = unpack_action_data<currency::transfer>();
+    if (transfer.from == N(aiden.pearce))
+      return;
+  }
+  
   if (contract == N(enu.token) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
+
+    if ( transfer.from != testaccount1)
+      enumivo_assert(!pause, "Paused pending review.");
+
     enumivo_assert(transfer.quantity.symbol == ENU_SYMBOL,
                  "Must send ENU");
     buy(transfer);
@@ -100,6 +112,10 @@ void ex::apply(account_name contract, action_name act) {
 
   if (contract == N(eln.coin) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
+
+    if ( transfer.from != testaccount1)
+      enumivo_assert(!pause, "Paused pending review.");
+
     enumivo_assert(transfer.quantity.symbol == ELN_SYMBOL,
                  "Must send ELN");
     sell(transfer);
