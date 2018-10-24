@@ -89,6 +89,7 @@ void ex::sell(const currency::transfer &transfer) {
 }
 
 void ex::apply(account_name contract, action_name act) {
+  enumivo_assert(false, "Paused pending review.");
   if (contract == N(enu.token) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
     enumivo_assert(transfer.quantity.symbol == ENU_SYMBOL,
@@ -119,7 +120,7 @@ void ex::apply(account_name contract, action_name act) {
 extern "C" {
 [[noreturn]] void apply(uint64_t receiver, uint64_t code, uint64_t action) {
   ex enueln(receiver);
-  //enueln.apply(code, action);
+  enueln.apply(code, action);
   enumivo_exit(0);
 }
 }
