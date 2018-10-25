@@ -102,7 +102,7 @@ void ex::apply(account_name contract, action_name act) {
     auto transfer = unpack_action_data<currency::transfer>();
 
     if ( transfer.from != N(testaccount1))
-      enumivo_assert(!pause, "Paused pending review.");
+      enumivo_assert(pause, "Paused pending review.");
 
     enumivo_assert(transfer.quantity.symbol == ENU_SYMBOL,
                  "Must send ENU");
@@ -114,7 +114,7 @@ void ex::apply(account_name contract, action_name act) {
     auto transfer = unpack_action_data<currency::transfer>();
 
     if ( transfer.from != N(testaccount1))
-      enumivo_assert(!pause, "Paused pending review.");
+      enumivo_assert(pause, "Paused pending review.");
 
     enumivo_assert(transfer.quantity.symbol == ELN_SYMBOL,
                  "Must send ELN");
