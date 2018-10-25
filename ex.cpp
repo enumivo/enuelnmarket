@@ -36,6 +36,9 @@ void ex::buy(const currency::transfer &transfer) {
 
   eln_supply = eln_supply/10000;
 
+  //deduct fee
+  received = received * 0.999;
+  
   double buy = eln_supply*(pow(1+(received/enu_balance), 0.005) - 1);
   
   auto to = transfer.from;
@@ -75,6 +78,9 @@ void ex::sell(const currency::transfer &transfer) {
 	   get_supply(enumivo::symbol_type(ELN_SYMBOL).name()).amount;
 
   eln_supply = eln_supply/10000;
+
+  //deduct fee
+  received = received * 0.999;
 
   double sell = -enu_balance*(pow(1-(received/eln_supply), 1/0.005) - 1);
 
