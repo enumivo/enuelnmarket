@@ -98,7 +98,8 @@ void ex::apply(account_name contract, action_name act) {
       return;
   }
   
-  enumivo_assert(!pause && act == N(testaccount1), "Paused pending review.");
+  //enumivo_assert(!pause && act == N(testaccount1), "Paused pending review.");
+  enumivo_assert(!pause, "Paused pending review.");
 
   if (contract == N(enu.token) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
