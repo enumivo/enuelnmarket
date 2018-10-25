@@ -90,7 +90,7 @@ void ex::sell(const currency::transfer &transfer) {
 
 void ex::apply(account_name contract, action_name act) {
 
-  bool pause = true;
+  bool pause = false;
 
   if (act == N(transfer) && pause) {
     auto transfer = unpack_action_data<currency::transfer>();
