@@ -39,7 +39,11 @@ void ex::buy(const currency::transfer &transfer) {
   //deduct fee
   received = received * 0.999;
   
-  double buy = eln_supply*(pow(1+(received/enu_balance), 0.005) - 1);
+  product = eln_balance * enu_balance;
+
+  double buy = eln_balance - (product / (received + enu_balance));
+
+  //double buy = eln_supply*(pow(1+(received/enu_balance), 0.005) - 1);
   
   auto to = transfer.from;
 
@@ -82,7 +86,11 @@ void ex::sell(const currency::transfer &transfer) {
   //deduct fee
   received = received * 0.999;
 
-  double sell = -enu_balance*(pow(1-(received/eln_supply), 1/0.005) - 1);
+  product = enu_balance * eln_balance;
+
+  double buy = enu_balance - (product / (received + eln_balance));
+
+  //double sell = -enu_balance*(pow(1-(received/eln_supply), 1/0.005) - 1);
 
   auto to = transfer.from;
 
