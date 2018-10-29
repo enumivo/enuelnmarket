@@ -88,7 +88,7 @@ void ex::sell(const currency::transfer &transfer) {
 
   product = enu_balance * eln_balance;
 
-  double buy = enu_balance - (product / (received + eln_balance));
+  double sell = enu_balance - (product / (received + eln_balance));
 
   //double sell = -enu_balance*(pow(1-(received/eln_supply), 1/0.005) - 1);
 
