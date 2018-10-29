@@ -39,7 +39,7 @@ void ex::buy(const currency::transfer &transfer) {
   //deduct fee
   received = received * 0.999;
   
-  product = eln_balance * enu_balance;
+  double product = eln_balance * enu_balance;
 
   double buy = eln_balance - (product / (received + enu_balance));
 
@@ -86,7 +86,7 @@ void ex::sell(const currency::transfer &transfer) {
   //deduct fee
   received = received * 0.999;
 
-  product = enu_balance * eln_balance;
+  double product = enu_balance * eln_balance;
 
   double sell = enu_balance - (product / (received + eln_balance));
 
